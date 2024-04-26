@@ -1,0 +1,119 @@
+.content {
+    flex: 1;
+    width: 100%;
+    background-color: rgb(237, 236, 236);
+}
+
+.content-top {
+    text-align: right;
+    font-size: 20px;
+    padding: 10px;
+    background-color: white;
+}
+
+.logout{
+    color: darkred;
+    cursor: pointer;
+}
+
+.content-main{
+    margin: 30px 10px 0;
+    background-color: white;
+    border: 1px solid rgb(160, 159, 159);
+}
+
+.title{
+    color: darkred;
+    border-bottom: 1px solid darkred;
+    border-left: 3px solid darkred;
+    margin: 5px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.icon{
+margin-right: 5px;
+}
+
+
+/* table style*/
+.table {
+    width: 95%;
+    border-collapse: collapse;
+    margin: 30px auto;
+}
+
+.table tr {
+    border-bottom: 1px solid #dee2e6;
+}
+
+.table th,
+.table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+    text-align: center;
+}
+
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid #dee2e6;
+}
+
+.delete-btn {
+    padding: 10px;
+    background-color: darkred;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.delete-btn:hover{
+    background-color: #cc0000;
+}
+
+.edit-btn{
+    padding: 10px;
+    background-color: rgb(237, 236, 236);
+    color: black;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.edit-btn:hover{
+    background-color: gray;
+}
+
+.search-container {
+    margin: 10px auto;
+}
+
+.rounded-input {
+    padding: 10px 30px 10px 10px;
+    width: 300px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    margin: 20px auto;
+    display: block;
+}
+
+
+.rounded-input:focus {
+    outline: none;
+    border-color: darkred;
+}
+
+.search-container input[type="text"]::placeholder {
+    color: #999;
+}
+
+
+
+
+
