@@ -4,8 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="addProduct.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <title>Document</title>
+    <style>
+        /* Add your CSS styles here */
+        .dropdown {
+            display: none; /* Hide dropdowns by default */
+        }
+        .dropdown.active {
+            display: block; /* Show dropdown when active class is present */
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -19,36 +29,69 @@
             <nav>
                 <ul>
                     <li class="mainmenu">
-                        <a href="dasboard.html"><i class="fas fa-tachometer-alt"></i>DASHBOARD</a>
+                        <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i>DASHBOARD</a>
                     </li>
                     <li class="mainmenu">
                         <a href="reports.html"><i class="fas fa-file"></i>REPORTS</a>
                     </li>
-                    <li class="dropdown-toggle mainmenu">
+                    <li class="dropdown-toggle mainmenu" onclick="toggleDropdown('products')">
                         <a href="javascript:void(0);" class="mainmenu-link">
                             <i class="fas fa-tag"></i>PRODUCTS <i class="fas fa-angle-down arrow"></i></a>
-                        <ul class="dropdown">
+                        <ul class="dropdown" id="products">
                             <li class="submenu"><a href="viewProduct.html"><i class="fas fa-circle"></i>View Product</a></li>
-                            <li class="active submenu"><a href="addProduct.html"><i class="fas fa-circle"></i>Add Product</a></li>
+                            <li class="submenu"><a href="addProduct.html"><i class="fas fa-circle"></i>Add Product</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown-toggle mainmenu">
+                    <li class="dropdown-toggle mainmenu" onclick="toggleDropdown('orders')">
                         <a href="#"><i class="fas fa-shopping-cart"></i>ORDERS <i class="fas fa-angle-down arrow"></i></a>
-                        <ul class="dropdown">
+                        <ul class="dropdown" id="orders">
                             <li class="submenu"><a href="createOrder.html"><i class="fas fa-circle"></i>Create Order</a></li>
                             <li class="submenu"><a href="viewOrder.html"><i class="fas fa-circle"></i>View Orders</a></li>
                         </ul>
                     </li>
-                    
-                    
                 </ul>
             </nav>
         </div>
         <div class="content">
-            ADD PRODUCT
+            <div class="content-top">
+                <div class="logout">
+                    <i class="fas fa-power-off"></i> Log-out
+                </div>
+            </div>
+
+            <div class="content-main">
+                <div class="title">
+                    <i class="fas fa-plus icon"></i> Create Product
+                </div>
+
+                <div class="main-form">
+
+                    <label for="product-name">Product Name</label>
+                    <input type="text" id="product-name">
+
+                    <label for="description">Description</label>
+                    <textarea type="text" id="description"></textarea>
+
+                    <label for="quantity">Quantity</label>
+                    <input type="number" min="0" class="quant" id="quantity">
+
+                    <label for="price">Price $</label>
+                    <input type="number" min="0" class="quant" id="price">
+
+                    <button class="btn" type="submit"><i class="fas fa-plus"></i> Create Product</button>
+                </div>
+                
+            </div>
+
+            
         </div>
     </div>
 
-
+    <script>
+        function toggleDropdown(id) {
+            var dropdown = document.getElementById(id);
+            dropdown.classList.toggle("active");
+        }
+    </script>
 </body>
 </html>

@@ -10,7 +10,6 @@
 <body>
     <div class="container">
         <div class="sidebar">
-
             <div class="logo">
                 <h1>IMS</h1>
                 <hr>
@@ -39,8 +38,6 @@
                             <li class="submenu"><a href="viewOrder.html"><i class="fas fa-circle"></i>View Orders</a></li>
                         </ul>
                     </li>
-                    
-                    
                 </ul>
             </nav>
         </div>
@@ -49,6 +46,11 @@
         </div>
     </div>
 
-
+    <script>
+        function toggleDropdown(id) {
+            var dropdown = document.getElementById(id);
+            dropdown.classList.toggle("active");
+        }
+    </script>
 </body>
 </html>
