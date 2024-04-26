@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +15,7 @@
     <div class="conatiner">
         <div class="header">
             <div class="navbar">
-                <a  class=" loginbtn"href="login.html">Login</a>
+                <a  class=" loginbtn" href="http://localhost/IMS/login/login.php">Login</a>
             </div>
             <div class="headertitle">
                 <h1>IMS</h1>
