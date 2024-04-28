@@ -1,0 +1,90 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+}
+
+.titleims{
+    text-align: center;
+    color: white;
+    font-size: 50px;
+
+}
+h2{
+    text-align: center;
+    color: white;
+    font-size: 30px;
+}
+
+.side-bar{
+width: 20%;
+height: 100vh;
+background-color: darkred;
+}
+
+.side-bar .menu{
+    width: 100%;
+    margin-top: 20px;
+}
+
+.side-bar .menu .item{
+    position: relative;
+    cursor: pointer;
+}
+
+.side-bar .menu .item:hover{
+    background-color: #7D7D7D;
+}
+
+.side-bar .menu .item a{
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+    display: block;
+    padding: 5px 30px;
+    line-height: 60px;
+}
+
+.side-bar .menu .item i{
+    margin-right: 15px;
+    font-size: 20px;
+}
+
+.side-bar .menu .item a .dropdown{
+position: absolute;
+right: 0;
+margin: 20px;
+transition: 0.3s ease;
+}
+
+.side-bar .menu .item .sub-menu{
+    display: none;
+    background-color: darkred;
+}
+
+.side-bar .menu .item .sub-menu a{
+   padding-left: 80px; 
+}
+
+.side-bar .menu .item .sub-menu a i{
+    font-size: 10px;
+ }
+
+
+.side-bar .menu .item .sub-menu a:hover{
+    background-color: #7D7D7D;
+} 
+.rotate{
+ transform: rotate(90deg);   
+}
+
+.sub-item{
+    margin: -15px auto;
+}
+
+
