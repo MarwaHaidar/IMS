@@ -28,7 +28,7 @@ session_start();?>
                 </div>
                 <div>
                     <label for="password">Password</label><br>
-                    <input type="text" name="password" placeholder="password">
+                    <input type="password" name="password" placeholder="password">
                 </div>
                 
                 <button class="loginbtn" name="loginbtn">Login</button>

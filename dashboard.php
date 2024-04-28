@@ -47,7 +47,7 @@ session_start();?>
                     <li class="dropdown-toggle mainmenu" onclick="toggleDropdown('orders')">
                         <a href="#"><i class="fas fa-shopping-cart"></i>ORDERS <i class="fas fa-angle-down arrow"></i></a>
                         <ul class="dropdown" id="orders">
-                            <li class="submenu"><a href="createOrder.html"><i class="fas fa-circle"></i>Create Order</a></li>
+                            <li class="submenu"><a href="createOrder.php"><i class="fas fa-circle"></i>Create Order</a></li>
                             <li class="submenu"><a href="viewOrder.html"><i class="fas fa-circle"></i>View Orders</a></li>
                         </ul>
                     </li>
