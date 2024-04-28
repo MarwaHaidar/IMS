@@ -1,0 +1,29 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.success-message {
+    text-align: center;
+    padding: 20px;
+    border: 2px solid darkred;
+    border-radius: 10px;
+    background-color: rgb(237, 236, 236);
+}
+
+.message{
+    margin-bottom: 40px;
+}
+
+.add-more-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: darkred;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}

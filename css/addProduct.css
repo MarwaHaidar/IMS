@@ -47,6 +47,7 @@ background-color: rgb(237, 236, 236);
     margin: 10px 0;
 }
 
+
 textarea{
     height: 60px;
 }
@@ -78,6 +79,11 @@ textarea{
 .icon{
     margin-right: 5px;
     }
+
+.form-content{
+display: flex;
+flex-direction: column;
+}
 
 
 
