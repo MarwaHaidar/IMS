@@ -24,17 +24,16 @@ $stmt->close();
     <link rel="stylesheet" href="css/side.css">
     <link rel="stylesheet" href="css/createOrder.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+    
+</head>
     <title>Document</title>
-    <style>
-        /* Add your CSS styles here */
-     
+    <style>     
         option{
             font-size: 15px !important;
 
         }
-
-
         .quant label {
             margin-right: 10px;
             font-weight: 400;
@@ -114,6 +113,10 @@ $stmt->close();
         </div>
     </div>
 
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
     <script>
         $(document).ready(function(){
             $('.sub-btn').click(function(){
@@ -152,7 +155,7 @@ $stmt->close();
     var orderArea = document.getElementById("orderArea");
     orderArea.appendChild(productSelection);
 
-    // Show the product options
+    
     // Show the product options
       var productOptions = productSelection.querySelector(".product-options");
       productOptions.style.display = "flex"; // or "flex" depending on your styling preference
@@ -162,10 +165,15 @@ $stmt->close();
     var sentence = document.querySelector(".defaultsentence");
     sentence.style.display = "none";
 }
+// -------------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", function() {
     var form = document.querySelector(".orderform");
     form.addEventListener("submit", function(event) {
-        event.preventDefault(); // Prevent default form submission
+        event.preventDefault(); 
+        
+
+        let orderID = generateOrderID();
+
 
         // Construct array of objects representing products and quantities
         var productsArray = [];
@@ -173,13 +181,14 @@ document.addEventListener("DOMContentLoaded", function() {
         productOptions.forEach(function(option) {
             var product = option.querySelector(".selectproduct").value;
             var quantity = option.querySelector(".Quantity").value;
-            productsArray.push({ product: product, quantity: quantity });
+            productsArray.push({ orderID: orderID, product: product, quantity: quantity });
         });
 
-        // Convert array to JSON
+
+        
         var jsonData = JSON.stringify(productsArray);
 
-        // Send Ajax request
+       
         $.ajax({
             url: 'createOrderCode.php',
             method: 'POST',
@@ -189,16 +198,41 @@ document.addEventListener("DOMContentLoaded", function() {
                 // Handle successful response
                 console.log('Order submitted successfully.');
                 console.log(jsonData);
+                
+                response = JSON.parse(response); // Parse the JSON response
+                
+                if (response.status === "success") {
+                    toastr.success(response.message);
+                    form.reset(); 
+                } else {
+                    toastr.error(response.message); 
+                }
             },
             error: function(xhr, status, error) {
                 // Handle error
                 console.error('Error:', error);
+                toastr.error('An error occurred while processing your request.'); 
             }
+            
         });
     });
+
+
+    function generateOrderID() {
+    
+    var randomID = 'ID' + (Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000);
+
+   
+    randomID = randomID.substring(0, 6);
+
+    return randomID;
+}
+
 });
 
 
     </script>
+      
+  
 </body>
 </html>
