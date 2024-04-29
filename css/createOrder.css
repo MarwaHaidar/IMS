@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100&display=swap');
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: "Libre Baskerville", serif;
+    overflow: scroll;
+}
+.content {
+    flex: 1;
+    width: 100%;
+    background-color: rgb(237, 236, 236);
+}
+
+.content-top {
+    text-align: right;
+    font-size: 20px;
+    padding: 10px;
+    background-color: white;
+}
+
+.logout{
+    color: darkred;
+    cursor: pointer;
+}
+
+.content-main{
+    margin: 30px 10px 0;
+    background-color: white;
+    border: 1px solid rgb(160, 159, 159);
+
+}
+
+.title{
+    color: darkred;
+    border-bottom: 1px solid darkred;
+    border-left: 3px solid darkred;
+    margin: 5px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.main-form{
+    display: flex;
+    flex-direction: column;
+    margin: 50px;
+    padding: 10px;
+    background-color: rgb(237, 236, 236);
+}
+
+
+.addproduct{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.addproductbtn{
+    width: 20%;
+    padding: 5px;
+    background-color: darkred;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 20px;
+
+   
+}
+.sentence{
+    width: 100%;
+    height: 10px;
+    opacity: 0.6;
+}
+
+.btn {
+    padding: 3px 20px;
+    background-color: darkred;
+    color: white;
+    height: 20px;
+    border: none;
+    float: right;
+    margin-left: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.btn:hover{
+    background-color: rgba(128, 128, 128, 0.5) !important;
+}
+
+.icon{
+    margin-right: 5px;
+    }
+
+
+
+ .product-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-around; 
+    margin-bottom: 30px;
+    
+}
+
+.product-options select {
+    flex: 0.5; 
+    margin-right: 10px; 
+    
+    
+};
+
+.quant{
+    display: flex;
+    
+} 
+
+.selectproduct{
+   padding: 5px;
+   border-radius: 5px;
+   background-color: rgba(128, 128, 128, 0.5);
+}
