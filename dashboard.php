@@ -40,15 +40,15 @@ session_start();?>
                         <a href="javascript:void(0);" class="mainmenu-link">
                             <i class="fas fa-tag"></i>PRODUCTS <i class="fas fa-angle-down arrow"></i></a>
                         <ul class="dropdown" id="products">
-                            <li class="submenu"><a href="viewProduct.html"><i class="fas fa-circle"></i>View Product</a></li>
-                            <li class="submenu"><a href="addProduct.html"><i class="fas fa-circle"></i>Add Product</a></li>
+                            <li class="submenu"><a href="viewProduct.php"><i class="fas fa-circle"></i>View Product</a></li>
+                            <li class="submenu"><a href="addProduct.php"><i class="fas fa-circle"></i>Add Product</a></li>
                         </ul>
                     </li>
                     <li class="dropdown-toggle mainmenu" onclick="toggleDropdown('orders')">
                         <a href="#"><i class="fas fa-shopping-cart"></i>ORDERS <i class="fas fa-angle-down arrow"></i></a>
                         <ul class="dropdown" id="orders">
                             <li class="submenu"><a href="createOrder.php"><i class="fas fa-circle"></i>Create Order</a></li>
-                            <li class="submenu"><a href="viewOrder.html"><i class="fas fa-circle"></i>View Orders</a></li>
+                            <li class="submenu"><a href="viewOrder.php"><i class="fas fa-circle"></i>View Orders</a></li>
                         </ul>
                     </li>
                 </ul>
