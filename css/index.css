@@ -17,7 +17,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: url('images/header1.jpg');
+    background-image: url('../images/header1.jpg');
     background-size: cover;
     background-position: center;
     position: relative;
