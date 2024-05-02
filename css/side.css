@@ -37,6 +37,12 @@ background-color: darkred;
     cursor: pointer;
 }
 
+.side-bar .menu .item.active {
+    background-color: #C8C8C8;
+    color: black;
+}
+
+
 .side-bar .menu .item:hover{
     background-color: #7D7D7D;
 }
@@ -86,5 +92,6 @@ transition: 0.3s ease;
 .sub-item{
     margin: -15px auto;
 }
+
 
 
