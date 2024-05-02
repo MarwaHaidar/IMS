@@ -27,3 +27,7 @@ body {
     cursor: pointer;
     text-decoration: none;
 }
+
+.add-more-button:hover{
+background-color: #cc0000;
+}

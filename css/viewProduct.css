@@ -35,7 +35,6 @@
 margin-right: 5px;
 }
 
-
 /* table style*/
 .table {
     width: 95%;
@@ -114,6 +113,11 @@ margin-right: 5px;
     transform: translateY(-50%);
     color: #999;
 }
+
+.edit-input{
+    border: transparent;
+}
+
 
 
 
