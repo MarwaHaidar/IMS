@@ -1,0 +1,89 @@
+.content {
+    flex: 1;
+    width: 100%;
+    background-color: rgb(237, 236, 236);
+}
+
+.content-top {
+    text-align: right;
+    font-size: 20px;
+    padding: 10px;
+    background-color: white;
+}
+
+.logout{
+    color: darkred;
+    cursor: pointer;
+}
+
+.content-main{
+    margin: 30px 10px 0;
+    background-color: white;
+    border: 1px solid rgb(160, 159, 159);
+}
+
+.title{
+    color: darkred;
+    border-bottom: 1px solid darkred;
+    border-left: 3px solid darkred;
+    margin: 5px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.icon{
+margin-right: 5px;
+}
+
+/* table style*/
+.table {
+    width: 95%;
+    border-collapse: collapse;
+    margin: 30px auto;
+   
+}
+
+
+.table th,
+.table td {
+    padding: 0.75rem;
+    vertical-align: top;   
+    text-align: center;
+}
+
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid #dee2e6; 
+}
+
+.input-container {
+    position: relative;
+    width: 300px;
+    margin: 10px auto;
+}
+
+.rounded-input {
+    width: 100%;
+    padding: 10px 35px 10px 10px; 
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    outline: none;
+}
+
+.rounded-input:focus{
+    border: 1px solid darkred;
+}
+
+.search-icon {
+    position: absolute;
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+.delete-order-btn{
+    background-color:darkred !important;
+    border: none;
+    color: white;
+}
