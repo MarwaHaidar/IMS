@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['edit_product_id'])) {
 
     $sql = "UPDATE products SET name=?, quantity=?, price=?, description=? WHERE id=?";
     $stmt = $connection->prepare($sql);
-    $stmt->bind_param("siiis", $product_name, $product_quantity, $product_price, $product_description, $product_id);
+    $stmt->bind_param("siisi", $product_name, $product_quantity, $product_price, $product_description, $product_id);
     $stmt->execute();
 
     if ($stmt->affected_rows > 0) {
@@ -101,12 +101,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['edit_product_id'])) {
                 <div class="item"><a href="dashboard.php"><i class="fas fa-tachometer-alt"></i>DASHBOARD</a></div>
                 <div class="item"><a href="reports.php"><i class="fas fa-file"></i>REPORTS</a></div>
                 <div class="item  active">
-                    <a class="sub-btn"><i class="fas fa-tag"></i>PRODUCTS
+                    <a class="sub-btn active"><i class="fas fa-tag"></i>PRODUCTS
                         <i class="fas fa-angle-right dropdown"></i>
                     </a>
                     <div class="sub-menu">
-                        <a href="addProduct.php" class="sub-item">Add Product</a>
-                        <a href="viewProduct.php" class="sub-item">View Products</a>
+                        <a href="addProduct.php" class="sub-item"><i class="fas fa-circle circle-icon"></i>Add Product</a>
+                        <a href="viewProduct.php" class="sub-item"><i class="fas fa-circle circle-icon"></i>View Products</a>
                     </div>
                 </div>
                 <div class="item">
@@ -114,8 +114,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['edit_product_id'])) {
                         <i class="fas fa-angle-right dropdown"></i>
                     </a>
                     <div class="sub-menu orders-menu">
-                        <a href="#" class="sub-item"><i class="fas fa-circle circle-icon"></i>Add Order</a>
-                        <a href="#" class="sub-item"><i class="fas fa-circle circle-icon"></i>View Orders</a>
+                        <a href="createOrder.php" class="sub-item"><i class="fas fa-circle circle-icon"></i>Add Order</a>
+                        <a href="viewOrder.html" class="sub-item"><i class="fas fa-circle circle-icon"></i>View Orders</a>
                     </div>
                 </div>
             </div>
