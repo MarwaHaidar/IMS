@@ -40,6 +40,8 @@ background-color: darkred;
 .side-bar .menu .item.active {
     background-color: #C8C8C8;
     color: black;
+    border-bottom: 2px solid white;
+    border-top: 2px solid white;
 }
 
 
