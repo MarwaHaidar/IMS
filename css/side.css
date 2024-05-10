@@ -1,9 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100&display=swap');
-
 body {
     margin: 0;
     padding: 0;
-    font-family: "Libre Baskerville", serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .container{
@@ -20,7 +18,7 @@ body {
 h2{
     text-align: center;
     color: white;
-    font-size: 20px;
+    font-size: 30px;
 }
 
 .side-bar{
@@ -38,6 +36,14 @@ background-color: darkred;
     position: relative;
     cursor: pointer;
 }
+
+.side-bar .menu .item.active {
+    background-color: #C8C8C8;
+    color: black;
+    border-bottom: 2px solid white;
+    border-top: 2px solid white;
+}
+
 
 .side-bar .menu .item:hover{
     background-color: #7D7D7D;
@@ -88,5 +94,6 @@ transition: 0.3s ease;
 .sub-item{
     margin: -15px auto;
 }
+
 
 

@@ -1,69 +1,54 @@
-<?php include("connection/db.php");
-session_start();?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="css/side.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Document</title>
-    <style>
-        /* Add your CSS styles here */
-        .dropdown {
-            display: none; /* Hide dropdowns by default */
-        }
-        .dropdown.active {
-            display: block; /* Show dropdown when active class is present */
-        }
-    </style>
 </head>
 <body>
     <div class="container">
-        <div class="sidebar">
-
-            <div class="logo">
-                <h1>IMS</h1>
-                <hr>
+        <div class="side-bar">
+            <h1 class="titleims">IMS</h1>
+            <h2>Welcome Admin</h2>
+            <hr>
+        <div class="menu">
+            <div class="item active"><a href="dashboard.php"><i class="fas fa-tachometer-alt"></i>DASHBOARD</a></div>
+            <div class="item"><a href="reports.php"><i class="fas fa-file"></i>REPORTS</a></div>
+            <div class="item">
+                <a class="sub-btn"><i class="fas fa-tag"></i>PRODUCTS
+                    <i class="fas fa-angle-right dropdown"></i>
+                </a>
+                <div class="sub-menu">
+                <a href="addproduct.php" class="sub-item"><i class="fas fa-circle circle-icon"></i>Add Product</a>
+                <a href="viewProduct.php" class="sub-item"><i class="fas fa-circle circle-icon"></i>View Products</a>
             </div>
-
-            <nav>
-                <ul>
-                    <li class="active mainmenu">
-                        <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i>DASHBOARD</a>
-                    </li>
-                    <li class="mainmenu">
-                        <a href="reports.html"><i class="fas fa-file"></i>REPORTS</a>
-                    </li>
-                    <li class="dropdown-toggle mainmenu" onclick="toggleDropdown('products')">
-                        <a href="javascript:void(0);" class="mainmenu-link">
-                            <i class="fas fa-tag"></i>PRODUCTS <i class="fas fa-angle-down arrow"></i></a>
-                        <ul class="dropdown" id="products">
-                            <li class="submenu"><a href="viewProduct.php"><i class="fas fa-circle"></i>View Product</a></li>
-                            <li class="submenu"><a href="addProduct.php"><i class="fas fa-circle"></i>Add Product</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-toggle mainmenu" onclick="toggleDropdown('orders')">
-                        <a href="#"><i class="fas fa-shopping-cart"></i>ORDERS <i class="fas fa-angle-down arrow"></i></a>
-                        <ul class="dropdown" id="orders">
-                            <li class="submenu"><a href="createOrder.php"><i class="fas fa-circle"></i>Create Order</a></li>
-                            <li class="submenu"><a href="viewOrder.php"><i class="fas fa-circle"></i>View Orders</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
+            </div>
+            <div class="item">
+                <a class="sub-btn orders-btn"><i class="fas fa-shopping-cart"></i>ORDERS
+                    <i class="fas fa-angle-right dropdown"></i>
+                </a>
+                <div class="sub-menu orders-menu">
+                        <a href="createOrder.php" class="sub-item"><i class="fas fa-circle circle-icon"></i>Add Order</a>
+                        <a href="viewOrder.html" class="sub-item"><i class="fas fa-circle circle-icon"></i>View Orders</a>
+                    </div>
+            </div>
         </div>
+    </div>
         <div class="content">
             DASHBOARD
         </div>
     </div>
 
-    <script>
-        function toggleDropdown(id) {
-            var dropdown = document.getElementById(id);
-            dropdown.classList.toggle("active");
-        }
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.sub-btn').click(function(){
+                $(this).next('.sub-menu').slideToggle();
+                $(this).find('.dropdown').toggleClass('rotate');
+            });
+        });
     </script>
 </body>
 </html>
