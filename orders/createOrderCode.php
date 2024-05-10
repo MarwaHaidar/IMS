@@ -1,5 +1,5 @@
 <?php
-include("connection/db.php");
+include("../connection/db.php");
 session_start();
 
 // Get the JSON data from the request
