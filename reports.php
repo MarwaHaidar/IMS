@@ -55,7 +55,7 @@
             <div class="butons">
             <a href="report_csv.php?report=product" class="btn">EXCEL</a>
 
-                <a href="" class="btn">PDF</a>
+            <a href="report_pdf.php?report=product" class="btn">PDF</a>
             </div>
         </div>
 
@@ -63,7 +63,7 @@
             <div class="text">Export Orders</div>
             <div class="butons">
             <a href="report_csv.php?report=orders" class="btn">EXCEL</a>
-                <button class="btn">PDF</button>
+            <a href="report_pdf.php?report=orders" class="btn">PDF</a>
             </div>
         </div>
         </div>
