@@ -62,7 +62,7 @@
         <div class="box">
             <div class="text">Export Orders</div>
             <div class="butons">
-                <button class="btn">EXCEL</button>
+            <a href="report_csv.php?report=orders" class="btn">EXCEL</a>
                 <button class="btn">PDF</button>
             </div>
         </div>
