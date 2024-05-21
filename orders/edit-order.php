@@ -185,10 +185,87 @@ if (isset($_GET['orderId'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Order</title>
-    <link real="stylesheet" href="../css/editOrders.css">
+    <link real="stylesheet" href="../css/editOrder.css">
     <link rel="stylesheet" href="../css/side.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+    <style>
+        .content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #ecf0f1;
+}
+
+.content h1 {
+    margin-top: 0;
+}
+
+/* Form Styling */
+#edit-order-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.product-section {
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.product-section span {
+    font-weight: bold;
+}
+
+.product-section label {
+    display: inline-block;
+    margin: 10px 0 5px;
+}
+
+.product-section input[type="number"] {
+    width: 50px;
+    padding: 5px;
+    margin-left: 10px;
+}
+
+.delete-product-btn {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-left: 10px;
+    border-radius: 3px;
+}
+
+.delete-product-btn:hover {
+    background-color: #c0392b;
+}
+
+input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #27ae60;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: flex-start;
+}
+
+input[type="submit"]:hover {
+    background-color: #229954;
+}
+
+/* Toastr Styling */
+.toast-success {
+    background-color: #27ae60 !important;
+}
+
+.toast-error {
+    background-color: #e74c3c !important;
+}
+    </style>
 </head>
 <body>
 <div class="container">
