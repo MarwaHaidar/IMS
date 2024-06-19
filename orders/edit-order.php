@@ -24,7 +24,8 @@ if (isset($_GET['orderId'])) {
             $orders[] = $row;
         }
     } else {
-        echo "Order not found.";
+        
+        echo "<script>showToaster('Error: Order not found.', 'error');</script>";
         exit();
     }
 
@@ -39,11 +40,29 @@ if (isset($_GET['orderId'])) {
 
             // Get the existing quantity for this product in the order
             $existingQuantity = $orders[$index]['quantity'];
+   
+            // Fetch the available quantity for this product from the products table
+            $productQuery = "SELECT quantity FROM products WHERE id = '$productId'";
+            $productResult = $connection->query($productQuery);
+
+            if ($productResult->num_rows > 0) {
+                $productData = $productResult->fetch_assoc();
+                $availableQuantity = $productData['quantity'];
+
+               
+                
+
+
 
             // Check if the submitted quantity is greater than the existing quantity
             if ($newQuantity > $existingQuantity) {
                 // Calculate the added quantity
                 $addedQuantity = $newQuantity - $existingQuantity;
+                if ($addedQuantity > 0 && $addedQuantity > $availableQuantity) {
+                   
+                    echo "<script>showToaster('Error: Not enough stock available for product ID: $productId.', 'error');</script>";
+                    exit();
+                }
 
                 // Update the quantity for the current product in the order
                 $updateQuery = "UPDATE orderdetails SET quantity = '$newQuantity' WHERE order_id = '$orderId' AND product_id = '$productId'";
@@ -61,10 +80,11 @@ if (isset($_GET['orderId'])) {
 
                 // Check if the update was successful
                 if (!$updateProductResult) {
-                    echo "Error updating product availability.";
+                   
+                    echo "<script>showToaster('Error: Error updating product availability.', 'error');</script>";
                     exit();
                 }
-            } else if ($newQuantity < $existingQuantity) {
+            } else if ($newQuantity < $existingQuantity && $newQuantity>0) {
                 $returnedQuantity = $existingQuantity - $newQuantity;
                 // Update the quantity for the current product in the order
                 $updateQuery = "UPDATE orderdetails SET quantity = '$newQuantity' WHERE order_id = '$orderId' AND product_id = '$productId'";
@@ -72,7 +92,8 @@ if (isset($_GET['orderId'])) {
 
                 // Check if the update was successful
                 if (!$updateResult) {
-                    echo "Error updating product details.";
+                    
+                    echo "<script>showToaster('Error: Error updating product details.', 'error');</script>";
                     exit();
                 }
 
@@ -82,10 +103,12 @@ if (isset($_GET['orderId'])) {
 
                 // Check if the update was successful
                 if (!$updateProductResult) {
-                    echo "Error updating product availability.";
+                    
+                    echo "<script>showToaster('Error: Error updating product availability.', 'error');</script>";
                     exit();
                 }
             }
+        }
         }
 
 
@@ -139,7 +162,8 @@ if (isset($_GET['orderId'])) {
                 // Add the product amount to total order amount
                 $totalOrderAmount += $productAmount;
             } else {
-                echo "Error fetching product price for product ID: $productId";
+                
+                echo "<script>showToaster('Error: Error fetching product price for product ID: $productId', 'error');</script>";
                 exit();
             }
         }
@@ -149,12 +173,12 @@ if (isset($_GET['orderId'])) {
         $updateOrderResult = $connection->query($updateOrderQuery);
         
         if ($updateOrderResult) {
-            echo "Total amount updated successfully.";
+            echo "<script>showToaster('Success: Total amount updated successfully.', 'success');</script>";
         } else {
-            echo "Error updating total amount in orders table.";
+            echo "<script>showToaster('Error: Unable to update total amount in orders table.', 'error');</script>";
         }
     } else {
-        echo "Order not found.";
+        echo "<script>showToaster('Error: Order not found.', 'error');</script>";
         exit();
     }
     
@@ -171,7 +195,8 @@ if (isset($_GET['orderId'])) {
 
 
 } else {
-    echo "Order ID not provided.";
+    
+    echo "<script>showToaster('Error: Order ID not provided.', 'error');</script>";
     exit();
 }
 
@@ -185,10 +210,118 @@ if (isset($_GET['orderId'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Order</title>
-    <link real="stylesheet" href="../css/editOrders.css">
+    <link real="stylesheet" href="../css/editOrder.css">
     <link rel="stylesheet" href="../css/side.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+    <style>
+        .content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #ecf0f1;
+}
+
+.content h1 {
+    margin-top: 0;
+}
+
+/* Form Styling */
+#edit-order-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.product-section {
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.product-section span {
+    font-weight: bold;
+}
+
+.product-section label {
+    display: inline-block;
+    margin: 10px 0 5px;
+}
+
+.product-section input[type="number"] {
+    width: 50px;
+    padding: 5px;
+    margin-left: 10px;
+}
+
+.delete-product-btn {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-left: 10px;
+    border-radius: 3px;
+}
+
+.delete-product-btn:hover {
+    background-color: #c0392b;
+}
+
+input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #27ae60;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: flex-start;
+}
+
+input[type="submit"]:hover {
+    background-color: #229954;
+}
+
+/* Toastr Styling */
+.toaster {
+            visibility: hidden;
+            min-width: 250px;
+            margin-left: -125px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 2px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            bottom: 30px;
+            font-size: 17px;
+        }
+
+        .toaster.show {
+            visibility: visible;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+        .toaster.success {
+            background-color: #4CAF50;
+        }
+
+        .toaster.error {
+            background-color: #f44336;
+        }
+
+        @keyframes fadein {
+            from {bottom: 0; opacity: 0;} 
+            to {bottom: 30px; opacity: 1;}
+        }
+
+        @keyframes fadeout {
+            from {bottom: 30px; opacity: 1;} 
+            to {bottom: 0; opacity: 0;}
+        }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -236,8 +369,9 @@ if (isset($_GET['orderId'])) {
             </div>
             <input type="submit" name="submit" value="Save Changes">
         </form>
-       
+        
     </div>
+    <div id="toaster" class="toaster">Some text..</div>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -307,7 +441,13 @@ if (isset($_GET['orderId'])) {
 });
 
 
+
     });
+
+    function showToaster(message, type) {
+        toastr[type](message);
+    }
+   
 </script>
 </body>
 </html>
