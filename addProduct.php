@@ -33,7 +33,7 @@
             </a>
             <div class="sub-menu orders-menu">
                         <a href="createOrder.php" class="sub-item"><i class="fas fa-circle circle-icon"></i>Add Order</a>
-                        <a href="viewOrder.html" class="sub-item"><i class="fas fa-circle circle-icon"></i>View Orders</a>
+                        <a href="viewOrder.php" class="sub-item"><i class="fas fa-circle circle-icon"></i>View Orders</a>
                     </div>
         </div>
     </div>

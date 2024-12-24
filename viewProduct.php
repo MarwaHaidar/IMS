@@ -114,8 +114,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['edit_product_id'])) {
                         <i class="fas fa-angle-right dropdown"></i>
                     </a>
                     <div class="sub-menu orders-menu">
-                        <a href="createOrder.php" class="sub-item"><i class="fas fa-circle circle-icon"></i>Add Order</a>
-                        <a href="viewOrder.html" class="sub-item"><i class="fas fa-circle circle-icon"></i>View Orders</a>
+                        <a href="orders/createOrder.php" class="sub-item"><i class="fas fa-circle circle-icon"></i>Add Order</a>
+                        <a href="orders/viewOrder.php" class="sub-item"><i class="fas fa-circle circle-icon"></i>View Orders</a>
                     </div>
                 </div>
             </div>
