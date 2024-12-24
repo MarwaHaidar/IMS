@@ -346,8 +346,8 @@ input[type="submit"]:hover {
                     <i class="fas fa-angle-right dropdown"></i>
                 </a>
                 <div class="sub-menu orders-menu">
-                    <a href="createOrder.php" class="sub-item">Add Order</a>
-                    <a href="viewOrder.html" class="sub-item">View Orders</a>
+                    <a href="orders/createOrder.php" class="sub-item">Add Order</a>
+                    <a href="orders/viewOrder.php" class="sub-item">View Orders</a>
                 </div>
             </div>
         </div>
