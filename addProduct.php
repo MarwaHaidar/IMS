@@ -23,8 +23,8 @@
                 <i class="fas fa-angle-right dropdown"></i>
             </a>
             <div class="sub-menu">
-                <a href="addproduct.php" class="sub-item"><i class="fas fa-circle circle-icon"></i>Add Product</a>
-                <a href="viewProduct.php" class="sub-item"><i class="fas fa-circle circle-icon"></i>View Products</a>
+                <a href="./addproduct.php" class="sub-item"><i class="fas fa-circle circle-icon"></i>Add Product</a>
+                <a href="./viewProduct.php" class="sub-item"><i class="fas fa-circle circle-icon"></i>View Products</a>
             </div>
         </div>
         <div class="item">
@@ -32,8 +32,8 @@
                 <i class="fas fa-angle-right dropdown"></i>
             </a>
             <div class="sub-menu orders-menu">
-                        <a href="createOrder.php" class="sub-item"><i class="fas fa-circle circle-icon"></i>Add Order</a>
-                        <a href="viewOrder.php" class="sub-item"><i class="fas fa-circle circle-icon"></i>View Orders</a>
+                        <a href="orders/createOrder.php" class="sub-item"><i class="fas fa-circle circle-icon"></i>Add Order</a>
+                        <a href="orders/viewOrder.php" class="sub-item"><i class="fas fa-circle circle-icon"></i>View Orders</a>
                     </div>
         </div>
     </div>
@@ -58,9 +58,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = mysqli_real_escape_string($connection, $_POST['name']);
     $quantity = mysqli_real_escape_string($connection, $_POST['quantity']);
     $price = mysqli_real_escape_string($connection, $_POST['price']);
-    $description = mysqli_real_escape_string($connection, $_POST['description']);
+    // $description = mysqli_real_escape_string($connection, $_POST['description']);
 
-    $sql = "INSERT INTO products (name, quantity, price, description) VALUES ('$name', '$quantity', '$price', '$description')";
+    $sql = "INSERT INTO products (name, quantity, price, description) VALUES ('$name', '$quantity', '$price', '')";
 
     if ($connection->query($sql) === TRUE) {
         header("Location: success.php?product=$name");
@@ -77,8 +77,8 @@ $connection->close();
                         <div><label for="product-name">Product Name</label></div>
                         <div><input style="width: 90%;" type="text" id="product-name" name="name" required></div>
 
-                        <div><label for="description">Description</label></div>
-                        <div><textarea style="width: 90%;" type="text" id="description" name="description" required></textarea></div>
+                        <!-- <div><label for="description">Description</label></div>
+                        <div><textarea style="width: 90%;" type="text" id="description" name="description" required></textarea></div> -->
 
                         <div><label for="quantity">Quantity</label></div>
                         <div><input type="number" min="0" class="quant" id="quantity" name="quantity" required></div>

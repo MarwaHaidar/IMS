@@ -87,6 +87,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['edit_product_id'])) {
 .save-btn:hover{
     background-color: gray;
 }
+.add-btn{
+    padding: 10px;
+    background-color:black;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.add-btn:hover{
+    background-color:gray;
+}
 
     </style>
 </head>
@@ -153,7 +167,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['edit_product_id'])) {
                             <th>Product Name</th>
                             <th>Stock</th>
                             <th>Price</th>
-                            <th>Description</th>
+                            <!-- <th>Description</th> -->
                             <th>Created at</th>
                             <th>Action</th>
                         </tr>
@@ -161,7 +175,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['edit_product_id'])) {
                     <tbody>
                         <?php
                      
-                        $sql = "SELECT `id`, `name`, `quantity`, `price`, `description`, `Created date` FROM `products`";
+                        $sql = "SELECT `id`, `name`, `quantity`, `price`, `Created date` FROM `products`";
                         $result = $connection->query($sql);
 
                         if ($result->num_rows > 0) {
@@ -171,11 +185,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['edit_product_id'])) {
                                 echo "<td>" . $row["name"]. "</td>";
                                 echo "<td>" . $row["quantity"]. "</td>";
                                 echo "<td>" . $row["price"]. "</td>";
-                                echo "<td>" . $row["description"]. "</td>";
+                                // echo "<td>" . $row["description"]. "</td>";
                                 echo "<td>" . $row["Created date"]. "</td>";
                                 echo "<td>
                                         <button class='edit-btn' data-product-id='" . $row["id"] . "'>Edit</button>
                                         <button class='delete-btn' data-product-id='" . $row["id"] . "'>Delete</button>
+                                        <button class='add-btn' data-product-id='" . $row["id"] . "'>ADD</button>
                                       </td>";
                                 echo "</tr>";
                             }

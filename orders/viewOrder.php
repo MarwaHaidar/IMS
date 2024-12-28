@@ -29,8 +29,8 @@ session_start();
                     <i class="fas fa-angle-right dropdown"></i>
                 </a>
                 <div class="sub-menu">
-                    <a href="addproduct.php" class="sub-item"><i class="fas fa-circle circle-icon"></i>Add Product</a>
-                    <a href="viewProduct.php" class="sub-item"><i class="fas fa-circle circle-icon"></i>View Products</a>
+                    <a href="../addproduct.php" class="sub-item"><i class="fas fa-circle circle-icon"></i>Add Product</a>
+                    <a href="../viewProduct.php" class="sub-item"><i class="fas fa-circle circle-icon"></i>View Products</a>
                 </div>
             </div>
             <div class="item">
