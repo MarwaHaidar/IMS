@@ -121,6 +121,38 @@ margin-right: 5px;
 
 
 
+.add-stock-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    display: none; /* Hidden initially */
+}
+
+.add-stock-container input {
+    border: 1px solid rgb(160, 159, 159);
+    border-radius: 5px;
+    padding: 5px;
+    margin: 10px;
+}
+
+.save-add-btn {
+    padding: 10px;
+    background-color: rgb(237, 236, 236);
+    color: black;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.save-add-btn:hover {
+    background-color: gray;
+}
+
 
 
 
