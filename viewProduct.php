@@ -43,6 +43,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['edit_product_id'])) {
     $stmt->close();
     exit;
 }
+// Handle adding new stock
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_product_id'])) {
+    $product_id = $_POST['add_product_id'];
+    $additional_stock = $_POST['additional_stock'];
+
+    // Retrieve current stock
+    $sql = "SELECT quantity FROM products WHERE id = ?";
+    $stmt = $connection->prepare($sql);
+    $stmt->bind_param("i", $product_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $current_stock = $row['quantity'];
+
+    // Update stock with the new quantity
+    $new_stock = $current_stock + $additional_stock;
+
+    $sql = "UPDATE products SET quantity = ? WHERE id = ?";
+    $stmt = $connection->prepare($sql);
+    $stmt->bind_param("ii", $new_stock, $product_id);
+    $stmt->execute();
+
+    if ($stmt->affected_rows > 0) {
+        echo "Stock updated successfully";
+    } else {
+        echo "Error updating stock";
+    }
+
+    $stmt->close();
+    $connection->close();
+    exit;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -56,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['edit_product_id'])) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Document</title>
     <style>
-        .fixed-input-container {
+        .fixed-input-container-edit-container {
             padding: 20px;
             background-color: #f9f9f9;
             margin-bottom: 20px;
@@ -65,14 +98,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['edit_product_id'])) {
             display: none;
         }
 
-        .fixed-input-container input {
+        .fixed-input-container-edit-container input {
             border: 1px solid rgb(160, 159, 159);
             border-radius: 5px;
             padding: 5px;
             margin: 10px;
         }
+        .fixed-input-container-add-stock-container{
+            padding: 20px;
+            background-color: #f9f9f9;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            display: none;
+        }
+        .fixed-input-container-add-stock-container input{
+            border: 1px solid rgb(160, 159, 159);
+            border-radius: 5px;
+            padding: 5px;
+            margin: 10px;
+        }
+        .close-btn {
+            position: relative;
+            margin:20px;
+            float:right;
+            font-size: 10px;
+            font-weight: bold;
+            color: black;
+            cursor: pointer;
+            border:none;
+            background-color: rgb(237, 236, 236);
+            border-radius: 10px;
+            
+        }
+        .close-btn:hover {
+            background-color:gray;     
+         }
 
-        .save-btn{
+        .save-btn,.save-add-btn{
         padding: 10px;
         background-color: rgb(237, 236, 236);
         color: black;
@@ -84,23 +147,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['edit_product_id'])) {
        padding-right: 15px; 
         }
         
-.save-btn:hover{
-    background-color: gray;
-}
-.add-btn{
-    padding: 10px;
-    background-color:black;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-right: 15px;
-    padding-left: 15px;
-    padding-right: 15px;
-}
-.add-btn:hover{
-    background-color:gray;
-}
+    .save-btn:hover{
+        background-color: gray;
+    }
+    .save-add-btn:hover{
+        background-color: gray;
+    }
+    .add-btn{
+        padding: 10px;
+        background-color:black;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-right: 15px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .add-btn:hover{
+        background-color:gray;
+    }
+
 
     </style>
 </head>
@@ -150,14 +217,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['edit_product_id'])) {
                     <input type="text" placeholder="Search by Product Name..." class="rounded-input">
                     <i class="search-icon fas fa-search"></i>
                 </div>
-                <div class="fixed-input-container">
+                <div class="fixed-input-container-edit-container">
                     <div class="edit-container">
+                        <button class="close-btn">X</button>
                         <input type="hidden" class="edit-product-id" value="">
                         <input type="text" class="edit-product-name" placeholder="Product Name">
                         <input type="number" class="edit-product-quantity" placeholder="Stock">
                         <input type="number" class="edit-product-price" placeholder="Price">
                         <input type="text" class="edit-product-description" placeholder="Description">
                         <button class="save-btn">Save</button>
+                    </div>
+                </div>
+                 <!-- Add stock container -->
+                <div class="fixed-input-container-add-stock-container">
+                    <div class="add-container">
+                        <button class="close-btn">X</button>
+                        <input type="hidden" class="add-product-id" value="">
+                        <input type="text" class="add-product-name" readonly placeholder="Product Name">
+                        <input type="number" class="current-product-stock" readonly placeholder="Current Stock">
+                        <input type="number" class="additional-stock" placeholder="Additional Stock">
+                        <button class="save-add-btn">Save</button>
                     </div>
                 </div>
                 <table class="table table-bordered">
@@ -226,7 +305,7 @@ $(document).ready(function(){
         $('.edit-product-quantity').val(productQuantity);
         $('.edit-product-price').val(productPrice);
         $('.edit-product-description').val(productDescription);
-        $('.fixed-input-container').slideDown();
+        $('.fixed-input-container-edit-container').slideDown();
     });
 
     // Save button click event
@@ -236,7 +315,7 @@ $(document).ready(function(){
         var productQuantity = $('.edit-product-quantity').val();
         var productPrice = $('.edit-product-price').val();
         var productDescription = $('.edit-product-description').val();
-        $('.fixed-input-container').slideUp();
+        $('.fixed-input-container-edit-container').slideUp();
 
         // Send edited data to server using AJAX
         $.post(window.location.href, {
@@ -265,6 +344,49 @@ $(document).ready(function(){
         }
     });
 
+
+    
+//    -----------------------------------------------------------------
+
+// $(document).ready(function () {
+    // Show the "Add Stock" input container when "Add" is clicked
+    $('.add-btn').click(function () {
+        var productId = $(this).data('product-id');
+        var row = $(this).closest('tr');
+        var productName = row.find('td:nth-child(2)').text();
+        var currentStock = row.find('td:nth-child(3)').text();
+
+        // Populate the fields in the Add Stock section
+        $('.add-product-id').val(productId);
+        $('.add-product-name').val(productName);
+        $('.current-product-stock').val(currentStock);
+        $('.additional-stock').val(''); // Clear previous input
+        $('.fixed-input-container-add-stock-container').slideDown(); // Show the Add Stock section
+    });
+
+    // Save the additional stock when the "Save" button is clicked
+    $('.save-add-btn').click(function () {
+        var productId = $('.add-product-id').val();
+        var additionalStock = $('.additional-stock').val();
+
+        // Validate the additional stock input
+        if (additionalStock === '' || isNaN(additionalStock) || additionalStock <= 0) {
+            alert("Please enter a valid positive number.");
+            return;
+        }
+
+        // Send the data to the server using AJAX
+        $.post(window.location.href, {
+            add_product_id: productId,
+            additional_stock: additionalStock
+        }, function (response) {
+            console.log(response);
+            location.reload(); // Reload the page to reflect updated stock
+        });
+    });
+
+
+// -----------------------------------------------------------------
     // Search functionality
     $('.rounded-input').on('input', function() {
         var searchText = $(this).val().toLowerCase();
@@ -277,7 +399,15 @@ $(document).ready(function(){
             }
         });
     });
+    // Close button functionality
+
+
+$('.close-btn').click(function() {
+    $(this).closest('.fixed-input-container-edit-container').slideUp();
+    $(this).closest('.fixed-input-container-add-stock-container').slideUp();
 });
+ })
+
 </script>
 
 </body>
