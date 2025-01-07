@@ -16,8 +16,8 @@
         <h2>Welcome Admin</h2>
         <hr>
     <div class="menu">
-        <div class="item"><a href="dashboard.php"><i class="fas fa-tachometer-alt"></i>DASHBOARD</a></div>
-        <div class="item"><a href="reports.php"><i class="fas fa-file"></i>REPORTS</a></div>
+        <!-- <div class="item"><a href="dashboard.php"><i class="fas fa-tachometer-alt"></i>DASHBOARD</a></div>
+        <div class="item"><a href="reports.php"><i class="fas fa-file"></i>REPORTS</a></div> -->
         <div class="item  active">
             <a class="sub-btn active"><i class="fas fa-tag"></i>PRODUCTS
                 <i class="fas fa-angle-right dropdown"></i>
