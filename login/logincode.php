@@ -34,7 +34,7 @@ if(isset($_POST['loginbtn'])){
                     'adminid' => $id,
                     'username' => $username
                 ];
-                $redirectPage = "../dashboard.php";
+                $redirectPage = "../orders/createOrder.php";
                 $_SESSION['status'] = "You are Logged In Successfully!";
                 header("Location: $redirectPage");
                 exit();
